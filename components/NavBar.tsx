@@ -1,4 +1,8 @@
 "use client";
+import { auth } from '@/app/firebase/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { FaHome, FaInfoCircle, FaEnvelope, FaSignInAlt, FaUser, FaTachometerAlt } from 'react-icons/fa';
+
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
@@ -28,7 +32,16 @@ const NavBar = () => {
   useEffect(() => {
     setTimeout(() => setProgress(0), 900);
   }, []);
+//checking the user active Status
+  const [user, setUser] = useState<any>(null);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
   return (
     <nav className="h-16 bg-background/50 sticky top-0 border-b px-8 backdrop-blur flex items-center justify-between z-10">
       {/* Top Loading Bar */}
@@ -64,20 +77,39 @@ const NavBar = () => {
             </Link>
           </li>
         ))}
-        <li className="buttons px-4 space-x-2">
-          <Link
-            href={"/authenticationForm"}
-            className={buttonVariants({ variant: "default" })}
-          >
-            Login
-          </Link>
-          <Link
-            href={"/authenticationForm"}
-            className={buttonVariants({ variant: "default" })}
-          >
-            Sign Up
-          </Link>
-        </li>
+        <div className="buttons gap-2 flex text-sm">
+          {user ? (
+            <>
+              <Link
+                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
+                href="/profilePage"
+              >
+                <FaUser className="mr-1" /> Profile
+              </Link>
+              <Link
+                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
+                href="/dashboard"
+              >
+                <FaTachometerAlt className="mr-1" /> Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
+                href="/login"
+              >
+                <FaSignInAlt className="mr-1" /> Login
+              </Link>
+              <Link
+                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
+                href="/signup"
+              >
+                <FaUser className="mr-1" /> Signup
+              </Link>
+            </>
+          )}
+        </div>
       </ul>
       {/* Dark Mode Toggle */}
       <ModeToggle />
