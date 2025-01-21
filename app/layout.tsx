@@ -39,6 +39,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
       </body>
+      <script src="//code.tidio.co/2bsfdsf1xsdnamqbiqgxovfv0ttjsnyl.js" async></script>
     </html>
   );
 }
