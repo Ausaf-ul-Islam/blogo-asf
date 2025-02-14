@@ -81,29 +81,23 @@ const NavBar = () => {
           {user ? (
             <>
               <Link
-                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
+                className="px-4 mx-2 py-2 border-2 border-purple-800 rounded-md text-purple-800 hover:border-gray-600 hover:text-gray-800 dark:text-white  transition-colors duration-200 ease-in-out flex items-center"
                 href="/profilePage"
               >
                 <FaUser className="mr-1" /> Profile
-              </Link>
-              <Link
-                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
-                href="/dashboard"
-              >
-                <FaTachometerAlt className="mr-1" /> Dashboard
               </Link>
             </>
           ) : (
             <>
               <Link
-                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
+                className="px-4 py-2 border-2 border-purple-800 rounded-md text-purple-800 hover:border-gray-600 hover:text-gray-800 dark:text-white transition-colors duration-200 ease-in-out flex items-center"
                 href="/login"
               >
                 <FaSignInAlt className="mr-1" /> Login
               </Link>
               <Link
-                className="px-4 py-2 border-2 border-gray-400 rounded-md text-gray-300 hover:border-purple-600 transition-colors duration-200 ease-in-out flex items-center"
-                href="/signup"
+                className="px-4 py-2 mr-2 border-2 border-purple-800 rounded-md text-purple-800 hover:border-gray-600 hover:text-gray-800 dark:text-white transition-colors duration-200 ease-in-out flex items-center"
+                href="/signUp"
               >
                 <FaUser className="mr-1" /> Signup
               </Link>
